@@ -1,12 +1,19 @@
 <?php $title="Signup";?>
-<?php include "include/header.php"; ?>
 
 <?php
-  //create db object
-    $db = new Db();
-    
+
     //start session
     session_start();
+    
+    if($_SESSION['active'] == true){ /* Redirects user to Login.php if not logged in */
+    header("location:index.php");
+	  exit;
+    }
+    
+  //create db object
+    include "include/header.php"; 
+    $db = new Db();
+    
 
  
 ?>
@@ -38,14 +45,14 @@
             
             <div class="form-ctrl__wrapper">
                 <!--<label for="password" >Password</label>-->
-                <input name="password1" type="password" id="password" class="form-ctrl fc" placeholder="Password (confirm)" required>
+                <input name="password1" type="password" id="password1" class="form-ctrl fc" placeholder="Password (confirm)" required>
             </div>
             
             <div class="form-ctrl__wrapper">
                 <input name="submit" type="submit" value="Signup" class="form-ctrl form-submit"/>
             </div>
             <div class="form-ctrl__wrapper">
-                <span style="text-align:center;font-size:1.2em;">Already have a account? <a href="login.php">Signin! </a></span>
+                <p style="text-align:center;font-size:1.4em;margin-top:10px;">Already have a account? <a href="login.php">Signin! </a></p>
             </div>
         <?php
         

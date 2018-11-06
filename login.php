@@ -1,11 +1,20 @@
-<?php include "include/header.php"; ?>
+<?php $title="Login";?>
 
 <?php
-  //create db object
-    $db = new Db();
     
     //start session
     session_start();
+    
+    if($_SESSION['active'] == true){ /* Redirects user to Login.php if not logged in */
+    header("location:index.php");
+	  exit;
+    }
+  
+  
+  //create db object
+    include "include/header.php";
+    $db = new Db();
+    
 
  
 ?>
@@ -33,10 +42,10 @@
             </div>
             
             <div class="form-ctrl__wrapper">
-                <input name="submit" type="submit" value="login" class="form-ctrl form-submit"/>
+                <input name="submit" type="submit" value="Login" class="form-ctrl form-submit"/>
             </div>
             <div class="form-ctrl__wrapper">
-                <span style="text-align:center;font-size:1.2em">Don't have a account? <a href="signup.php">Signup! </a></span>
+                <p style="text-align:center;font-size:1.4em;margin-top:10px;">Don't have a account? <a href="signup.php">Signup! </a></p>
             </div>
         <?php
         
