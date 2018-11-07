@@ -9,7 +9,7 @@ body {
   background:#fff;
   font-family: 'Source Sans Pro', sans-serif;
   font-family: 'Varela', sans-serif;
-  background:#fff;
+  /*background:#FAFAFA;*/
   
 }
 
@@ -20,13 +20,13 @@ margin:10px;
 }
 
 #header{
-  /*background:#000;*/
+  background:#fff;
   display:flex;
-  width:100%;
   padding:0 15px;
   padding-right:35px;
-  border-bottom:1px solid #eee;
+  border-bottom:1.3px solid #dbdbdb;
   align-items:center;
+  margin:0 auto;
   justify-content:space-between;
 }
 
@@ -38,12 +38,13 @@ margin:10px;
   padding-left: 1.5em;
   color:#000;
   text-align: center;
-  font-size: 40px;
+  /*font-size: 40px;*/
 }
 
 
 #container{
   display:flex;
+  flex-direction:column;
   height: 95%;
   /*background:#fff;*/
   margin:0 auto;
@@ -103,27 +104,60 @@ margin:10px;
   color:#fff;
   border:1px solid #333;
   font-size:1.8em;
+  
 }
 
 :link{
-  color:#0060df;
+  
+}
+
+
+
+a:link {
+  color:#0000fe;
   text-decoration: none;
   padding:10px;
-}
+  
+}    /* unvisited link is black*/
+
+a:visited {
+  color:#0000fe;
+  text-decoration: none;
+  padding:10px;
+} /* visited link is black (reverse the color back to black)*/
+a:hover {
+  color:#0000ff;
+  text-decoration: none;
+  padding:10px;
+  
+}   /* mouse over link (blue when mouse over)*/
+a:active {color:#FF0000;}  /* selected link (blue in the split second which you loading the page.)*/
+
+
 
 .form-submit:hover{
   cursor: pointer;
 }
 
-.home{
+.round{
+  padding:0;
+  border-radius:50%;
+  height:70px;
+  width:70px;
+}
+
+
+#home{
   color:black;
 }
 
+#home:active {color:#FF0000;} 
+
 .fc:focus{
 border: 1px solid #333 !important;
-box-shadow: 0 0 3px #333 !important;
--moz-box-shadow: 0 0 3px #333 !important;
--webkit-box-shadow: 0 0 3px #333 !important;
+/*box-shadow: 0 0 3px #333 !important;*/
+/*-moz-box-shadow: 0 0 3px #333 !important;*/
+/*-webkit-box-shadow: 0 0 3px #333 !important;*/
 }
 
 .fc:focus {
@@ -132,6 +166,47 @@ outline: none !important;
 }
 
 
+
+
+.footer{
+  display:flex;
+  padding:15px;
+  align-items:center;
+  justify-content:center;
+  border-top:1.3px solid #dbdbdb;
+  font-size:1.2em;
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  /*width:340px;*/
+}
+
 .main{
-  font-size:3.6em;
+  font-size:1.5em;
+  width:360px;
+  display:flex;
+  flex-direction:column;
+  /*justify-content:space-evenly;*/
+  /*padding:40px 0;*/
+  align-items:center;
+}
+
+.card{
+    width: 100%;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    margin: 10px;
+    padding:10px;
+}
+
+.card__header{
+  text-align:center;
+  margin:10px;
+  font-weight:normal;
+}
+
+.card:hover{
+  cursor:pointer;
 }

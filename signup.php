@@ -10,7 +10,8 @@
 	  exit;
     }
     
-  //create db object
+    //create db object
+    $header = "MicroTasks";
     include "include/header.php"; 
     $db = new Db();
     
@@ -36,7 +37,7 @@
             </div>
             <div class="form-ctrl__wrapper">
                 <!--<label for="username" >Username</label>-->
-                <input name="username" type="username" id="username" class="form-ctrl fc" placeholder="Username" required autofocus>
+                <input name="username" pattern="^[a-zA-Z0-9.\-_$@*!]{3,30}$" oninvalid="this.setCustomValidity('Invalid Username!');" type="username" id="username" class="form-ctrl fc" placeholder="Username" required autofocus>
             </div>
             <div class="form-ctrl__wrapper">
                 <!--<label for="password" >Password</label>-->

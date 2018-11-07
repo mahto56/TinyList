@@ -39,11 +39,34 @@ class Db{
         }
     }
 
-    public function getListCount()
-    {   $query = "CALL getMovieCount();";
+    public function getPendingTasksCount()
+    {   $query = "SELECT count(*) FROM tasks t,tasklists tl,users u WHERE t.done=0 AND t.tasklist_id=tl.list_id AND tl.owner_id=u.user_id AND u.username='".$_SESSION['username']."'";
         $data = $this->mysqli->query($query) or die("ERROR: Could not get movie details" . mysqli_error($this->mysqli));
         if($data->num_rows > 0){
             return $data;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    
+    public function getTaskCount($list_id)
+    {   $query = "SELECT count(*) FROM tasks t WHERE tasklist_id='$list_id'";
+        $data = $this->mysqli->query($query) or die("ERROR: Could not get movie details" . mysqli_error($this->mysqli));
+        if($data->num_rows > 0){
+            return $data->fetch_assoc()['count(*)'];
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public function getUsersFirstName(){
+        $query = "SELECT fullname FROM users WHERE username='".$_SESSION['username']."'";
+        $data = $this->mysqli->query($query) or die("ERROR: Could not get movie details" . mysqli_error($this->mysqli));
+        if($data->num_rows > 0){
+            return explode(" ",$data->fetch_assoc()['fullname'])[0];
         }
         else{
             return false;

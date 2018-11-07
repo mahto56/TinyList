@@ -12,6 +12,7 @@
   
   
   //create db object
+    $header = "MicroTasks";
     include "include/header.php";
     $db = new Db();
     
@@ -60,6 +61,7 @@
             if( $result->num_rows ==1  ) {
                 /* Success: Set session variables and redirect to protected page */
                 $_SESSION['username'] = $username;
+                $_SESSION['firstname'] = $db->getUsersFirstName();
                 $_SESSION['active'] = true;
                 header("location:index.php");
                 exit;
