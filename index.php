@@ -24,14 +24,28 @@
                 return color;
   }
 </script>
-
+ <div class="form-ctrl__wrapper">
+              <input onclick="alert('not implemented!');" type="button" value="+" class="form-ctrl form-submit round"/>
+  </div>
+  
 <div id="container">
-  <h2>You have <?=$count['count(*)']?> pending tasks! </h2>
- 
-  <div class="main">
-  <!--<div class="form-ctrl__wrapper">-->
-  <!--            <input onclick="alert('not implemented!');" type="button" value="+" class="form-ctrl form-submit round"/>-->
+  <!--<h2>You have <?=$count['count(*)']?> pending tasks! </h2>-->
+  <!--<div class="sidebar">-->
+  <!--  <div class="label">-->
+      
   <!--  </div>-->
+  <!--  <div class="label">-->
+  <!--    <h7 style="font-size:1.5em;">Label</h7>-->
+      
+  <!--  </div>-->
+  <!--  <div class="label">-->
+      
+  <!--  </div>-->
+  <!--  <div class="label">-->
+      
+  <!--  </div>-->
+  <!--</div>-->
+  <div class="main">
   <?php if($tasklists) :?>
     <?php while($list = $tasklists->fetch_assoc()) :?>
       <div class="card" >
@@ -50,6 +64,17 @@
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
             sed diam nonummy nibh euismod tincidunt ut laoreet dolore
             </p>
+            <!--<div class="subtask">-->
+            <!--  <div><img src="assets/images/right-arrow.png" alt="logo" /></div>-->
+            <!--  <ul>-->
+            <!--    <li>jdjkd</li>-->
+            <!--    <li>dhdhjd</li>-->
+            <!--    <li>jdjd</li>-->
+            <!--    <li>sds</li>-->
+            <!--    <li>dsds</li>-->
+            <!--  </ul>-->
+              
+            <!--</div>-->
           </div>
           <div class="tags">
           <p class="tag">#shopping</p>
@@ -63,20 +88,14 @@
   </div>
 </div>         
 
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script>
-  var elem = document.querySelector('.main');
-  var msnry = new Masonry( elem, {
-  // options
-  itemSelector: '.card',
-  columnWidth: 200
-  });
+<!--<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>-->
+<!--<script>-->
+<!--  var elem = document.querySelector('.main');-->
+<!--  var msnry = new Masonry( elem, {-->
+<!--  itemSelector: '.card',-->
+<!--  columnWidth: 200-->
+<!--  });-->
   
-  // element argument can be a selector string
-  //   for an individual element
-  var msnry = new Masonry( '.main', {
-  // options
-  });
 
-</script>
+<!--</script>-->
 <?php include "include/footer.php"; ?>
