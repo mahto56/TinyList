@@ -50,6 +50,16 @@ class Db{
         }
     }
     
+    public function getTasks()
+    {   $query = "SELECT t.* FROM tasks t,tasklists tl,users u WHERE t.tasklist_id=tl.list_id AND tl.owner_id=u.user_id AND u.username='".$_SESSION['username']."'";
+        $data = $this->mysqli->query($query) or die("ERROR: Could not get movie details" . mysqli_error($this->mysqli));
+        if($data->num_rows > 0){
+            return $data;
+        }
+        else{
+            return 0;
+        }
+    }
     
     public function getTaskCount($list_id)
     {   $query = "SELECT count(*) FROM tasks t WHERE tasklist_id='$list_id'";
