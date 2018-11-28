@@ -11,7 +11,7 @@
     }
     
     //create db object
-    $header = "MicroTasks";
+    $header = "TinyLists";
     include "include/header.php"; 
     $db = new Db();
     
