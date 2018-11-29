@@ -11,7 +11,7 @@ body {
   background:#fff;
   font-family: 'Source Sans Pro', sans-serif;
   font-family: 'Varela', sans-serif;
-  font-family: 'Raleway', sans-serif;
+  /*font-family: 'Raleway', sans-serif;*/
   font-family: 'Quicksand', sans-serif;
   /*background:#FAFAFA;*/
   
@@ -65,7 +65,8 @@ margin:10px;
   margin:0 auto;
   align-items:center;
   justify-content:center;
-  /*padding:20px;*/
+  padding:30px 80px;
+  /*background:#FAFAFA;*/
   
 }
 
@@ -113,7 +114,7 @@ margin:10px;
   padding:10px;
   margin:8px 0;
   font-family: 'Varela', sans-serif;
-  font-family: 'Raleway', sans-serif;
+  /*font-family: 'Raleway', sans-serif;*/
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -237,19 +238,21 @@ outline: none !important;
 
 
 .main{
-  /*width:80%;*/
+  width:100%;
+  position: relative;
   height: 90%;
-  display:flex;
+  /*display:flex;*/
   /*flex-direction:column;*/
   /*justify-content:space-evenly;*/
   padding:30px 30px 20px 60px;
-  align-items:center;
-  flex-wrap:wrap;
+  /*align-items:center;*/
+  /*flex-wrap:wrap;*/
   margin:0 auto;
 }
 
 .card{
-    /*width: 100%;*/
+    width: 100%;
+    position: absolute;
     border: 1px solid #ccc;
     border-radius: 12px;
     margin: 10px;
@@ -258,8 +261,19 @@ outline: none !important;
      /*box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);*/
      transition: box-shadow 0.2s;
      
-  
+    z-index: 1;
   /*transition: all 0.3s cubic-bezier(.25,.8,.25,1);*/
+}
+
+
+.card.muuri-item-hidden {
+  z-index: 0;
+}
+.card.muuri-item-releasing {
+  z-index: 2;
+}
+.card.muuri-item-dragging {
+  z-index: 3;
 }
 
 
@@ -279,22 +293,23 @@ outline: none !important;
 
 
 .card:hover{
- /*box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);*/
+ box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
  /*box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);*/
 
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+  /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(82, 168, 236, 0.6);*/
     
 }
 
 .desc{
   min-height: 54px;
   margin-bottom: 10px;
+  font-family:'Varela',sans-serif;
 }
 
 .card__header{
   text-align:center;
   /*margin:10px;*/
-  font-weight:normal;
+  font-weight:500;
   font-size:1.5em;
   
   display:flex;
