@@ -41,7 +41,7 @@
             </div>
             <div class="form-ctrl__wrapper">
                 <!--<label for="password" >Password</label>-->
-                <input name="password1" type="password" id="password" class="form-ctrl fc" placeholder="Password" required>
+                <input name="password" type="password" id="password" class="form-ctrl fc" placeholder="Password" required>
             </div>
             
             <div class="form-ctrl__wrapper">
@@ -61,15 +61,12 @@
         if(isset($_POST['submit'])){
             $username = $_POST['username'];
             $password = $_POST['password'];
-            $query = "SELECT * from `users` WHERE username='$username' and password='$password'";
+            $fullname = $_POST['fullname'];
+            $query = "INSERT INTO `users` (`fullname`,`username`,`password`) values('$fullname','$username','$password')";
             // echo $query;
-            $result = $db->mysqli->query($query) or die("ERROR: Could Login" . mysqli_error($db->mysqli));//password_verify($_POST['password'], $Password);
+            $result = $db->mysqli->query($query) or die("<div class='error'>ERROR: Could Signup," . mysqli_error($db->mysqli)."</div>");//password_verify($_POST['password'], $Password);
             /* Check if form's username and password matches */
-            if( $result->num_rows ==1  ) {
-                /* Success: Set session variables and redirect to protected page */
-                $_SESSION['username'] = $username;
-                $_SESSION['active'] = true;
-                #header("location:index.php");
+            if( $result) {
                 echo "<script>alert('Success')</script>";
                 exit;
             } else {

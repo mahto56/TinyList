@@ -49,6 +49,11 @@ function pintoggle(id){
 let cards = document.getElementsByClassName("card");
 
 Array.from(cards).forEach(e => {
-    e.style.background = randomColor({luminosity: 'light'});
+    // e.style.background = randomColor({luminosity: 'light'});
     e.style.borderColor = e.style.background;
 });
+
+
+function delet(){
+    
+}

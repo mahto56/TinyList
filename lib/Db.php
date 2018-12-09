@@ -51,7 +51,7 @@ class Db{
     }
     
     public function getTasks()
-    {   $query = "SELECT t.* FROM tasks t,tasklists tl,users u WHERE t.tasklist_id=tl.list_id AND tl.owner_id=u.user_id AND u.username='".$_SESSION['username']."'";
+    {   $query = "SELECT t.*,date(t.added_on) as date FROM tasks t,users u WHERE t.owner_id=u.user_id AND u.username='".$_SESSION['username']."'";
         $data = $this->mysqli->query($query) or die("ERROR: Could not get movie details" . mysqli_error($this->mysqli));
         if($data->num_rows > 0){
             return $data;
@@ -83,6 +83,18 @@ class Db{
         }
     }
     
+    
+    public function deleteTask($id)
+    {
+        $delete_row = $this->mysqli->query("DELETE FROM tasks where task_id=$id") or die($this->mysqli->error.__LINE__);
+        //validate delete
+        if($delete_row){
+            //redirect if success
+            header("Location: index.php?msg=".urlencode('Task #'.$id.' was removed succesfully!'));
+        }else{
+            die("ERROR: Could not able to execute $query. " . mysqli_error($this->mysqli));
+        }   
+    }
     
     
 

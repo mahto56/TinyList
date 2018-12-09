@@ -137,25 +137,24 @@ margin:10px;
 
 
 
-a:link {
-  color:#0000fe;
-  text-decoration: none;
-  padding:10px;
+/*a:link {*/
+/*  color:#0000fe;*/
+/*  text-decoration: none;*/
+/*  padding:10px;*/
   
-}    /* unvisited link is black*/
-
-a:visited {
-  color:#0000fe;
-  text-decoration: none;
-  padding:10px;
-} /* visited link is black (reverse the color back to black)*/
-a:hover {
-  color:#0000ff;
-  text-decoration: none;
-  padding:10px;
+/*} */
+/*a:visited {*/
+/*  color:#0000fe;*/
+/*  text-decoration: none;*/
+/*  padding:10px;*/
+/*} */
+/*a:hover {*/
+/*  color:#0000ff;*/
+/*  text-decoration: none;*/
+/*  padding:10px;*/
   
-}   /* mouse over link (blue when mouse over)*/
-a:active {color:#FF0000;}  /* selected link (blue in the split second which you loading the page.)*/
+/*} */
+/*a:active {color:#FF0000;} */
 
 
 
@@ -164,11 +163,11 @@ a:active {color:#FF0000;}  /* selected link (blue in the split second which you 
 }
 
 .round{
-  padding:0;
+  padding:18px;
   border-radius:50%;
   height:70px;
   width:70px;
-  
+  text-decoration:none;
   font-family: Varela;
   background-color: #F44336;
   color: #fff;
@@ -387,3 +386,11 @@ li{
 /*  padding:0 20px;*/
 /*  width:100%;*/
 /*}*/
+
+.error{
+  color:red;
+}
+
+.info{
+  text-align:center;
+}

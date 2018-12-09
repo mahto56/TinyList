@@ -31,6 +31,11 @@
            <div class="form-ctrl__wrapper">
            <input onclick="window.location='signup.php'" type="button" value="Create new Account" class="form-ctrl form-submit"/>
            </div>
+          
+        <?php elseif(strpos($_SERVER['SCRIPT_NAME'], 'add.php') == true) :?>
+           <div class="form-ctrl__wrapper">
+           <input onclick="window.location='index.php'" type="button" value="Go Back" class="form-ctrl form-submit"/>
+           </div>
             
           <?php elseif($_SESSION['active']==true) :?>
             <div class="form-ctrl__wrapper">

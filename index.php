@@ -11,7 +11,16 @@
   include "include/header.php";
   $db = new Db();
   $tasklists = $db->getTasks();
-  $count = $db->getPendingTasksCount()->fetch_assoc();
+  // $count = $db->getPendingTasksCount()->fetch_assoc();
+  
+  //delete
+  if(isset($_GET['delete'])) {
+    $db->deleteTask($_GET['delete']);
+  }
+  
+  if(isset($_GET['msg'])) {
+    echo "<script>alert('".$_GET['msg']."')</script>";
+  }
 ?>
 
 <style>
@@ -35,31 +44,15 @@
                 return color;
   }
 </script>
- <div class="form-ctrl__wrapper">
-              <input onclick="alert('not implemented!');" type="button" value="+" class="form-ctrl form-submit round"/>
+ <div class="form-ctrl__wrapper" >
+      <a href="add.php" id="add" class="form-ctrl form-submit round" >+</a>
   </div>
   
 <div id="container">
-  <!--<h2>You have <?=$count['count(*)']?> pending tasks! </h2>-->
-  <!--<div class="sidebar">-->
-  <!--  <div class="label">-->
-      
-  <!--  </div>-->
-  <!--  <div class="label">-->
-  <!--    <h7 style="font-size:1.5em;">Label</h7>-->
-      
-  <!--  </div>-->
-  <!--  <div class="label">-->
-      
-  <!--  </div>-->
-  <!--  <div class="label">-->
-      
-  <!--  </div>-->
-  <!--</div>-->
   <div class="main">
   <?php if($tasklists) :?>
     <?php while($list = $tasklists->fetch_assoc()) :?>
-      <div class="card" >
+      <div class="card" style="background:<?=$list['color']?>;border-color:<?=$list['color']?>">
           <div class="card_item">
           <div  class="card__header">
             <h7 title="Double click to edit" ondblclick="this.contentEditable=true;this.focus()" onblur="this.contentEditable=false;" onclick="done();" class="task-title editable" id="<?=$list['task_id'];?>" done="0"><?=$list['task_name'];?></h7>
@@ -68,76 +61,28 @@
               <!--<img src="assets/images/pin-black.png" style="display:none" alt="logo" id="<?=$list['task_id'];?>-pin_black" onclick="pintoggle('<?=$list['task_id'];?>')"/>-->
 
               <img src="assets/images/edit.png" alt="logo" />
-              <img src="assets/images/bin.png" alt="logo" /></div>
+              <a style="" href="index.php?delete=<?=$list['task_id']?>"><img src="assets/images/bin.png" alt="logo"/></a>
+              </div>
           </div>
           <div>
             <p class="date">
                 <img src="assets/images/calendar-check.png" alt="logo" />
               
-              <span class="date2">Mon, Apr 30</span></p>
+              <span class="date2"><?=date('D, M j',strtotime($list['date']))?></span></p>
             <p title="Double click to edit" ondblclick="this.contentEditable=true;this.focus()"  onblur="this.contentEditable=false;" class="desc editable">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-            sed diam nonummy nibh euismod tincidunt ut laoreet dolore
+              <?=$list['description']?>
             </p>
-            <!--<div class="subtask">-->
-            <!--  <div><img src="assets/images/right-arrow.png" alt="logo" /></div>-->
-            <!--  <ul>-->
-            <!--    <li>jdjkd</li>-->
-            <!--    <li>dhdhjd</li>-->
-            <!--    <li>jdjd</li>-->
-            <!--    <li>sds</li>-->
-            <!--    <li>dsds</li>-->
-            <!--  </ul>-->
-              
-            <!--</div>-->
           </div>
           <div class="tags">
-          <p class="tag">#shopping</p>
+          <p class="tag">#<?=$list['tag']?></p>
           </div>
           </div>
       </div>
     <?php endwhile ?>
   <?php  else :?>
-    <p>There are no list :(</p>
+    <h1 class="info">There are no Tasks :(</h1>
   <?php endif; ?>
-    <div class="card" >
-          <div class="card_item">
-          <div  class="card__header">
-            <h7 title="Double click to edit" ondblclick="this.contentEditable=true;this.focus()" onblur="this.contentEditable=false;" contentEditable="true" onclick="done();" class="task-title" id="<?=$list['task_id'];?>" done="0">Tmp Task</h7>
-            <div class="card-ctrl">
-              <img src="assets/images/edit.png" alt="logo" />
-              <img src="assets/images/bin.png" alt="logo" /></div>
-          </div>
-          <div>
-            <p class="date">
-                <img src="assets/images/calendar-check.png" alt="logo" />
-              
-              <span class="date2">Mon, Apr 30</span></p>
-            <p title="Double click to edit" ondblclick="this.contentEditable=true;this.focus()" onblur="this.contentEditable=false;" class="desc">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-            sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-            sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-            sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-            </p>
-            <!--<div class="subtask">-->
-            <!--  <div><img src="assets/images/right-arrow.png" alt="logo" /></div>-->
-            <!--  <ul>-->
-            <!--    <li>jdjkd</li>-->
-            <!--    <li>dhdhjd</li>-->
-            <!--    <li>jdjd</li>-->
-            <!--    <li>sds</li>-->
-            <!--    <li>dsds</li>-->
-            <!--  </ul>-->
-              
-            <!--</div>-->
-          </div>
-          <div class="tags">
-          <p class="tag">#shopping</p>
-          </div>
-          </div>
-      </div>
+    
   </div>
 </div>         
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
