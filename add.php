@@ -31,7 +31,9 @@
                 <!--<label for="password" >Password</label>-->
                 <input name="task_tag" maxlength="10" type="text" class="form-ctrl fc" placeholder="Tag" required>
             </div>
-            <input name="color" id="color" style="display:none;"/>
+            <div class="form-ctrl__wrapper">
+                <input name="color" type="button" class="jscolor {valueElement:'valueInput', styleElement:'styleInput'} form-ctrl fc" id="color"/>
+            </div>
             <div class="form-ctrl__wrapper">
                 <input name="submit" type="submit" value="+ Add Task" class="form-ctrl form-submit"/>
             </div>
@@ -40,19 +42,22 @@
         
         /* Check if  form has been submitted */
         if(isset($_POST['submit'])){
-            $taskname = $_POST['task_name'];
-            $taskdesc = $_POST['task_desc'];
-            $tasktag = $_POST['task_desc'];
-            $color = $_POST['color'];
+            $taskname = mysql_escape_string($_POST['task_name']);
+            $taskdesc = mysql_escape_string($_POST['task_desc']);
+            $tasktag = mysql_escape_string($_POST['task_tag']);
+            $color = mysql_escape_string($_POST['color']);
             $userid = $db->mysqli->query("SELECT user_id from users WHERE `username`='".$_SESSION['username']."'")->fetch_assoc()['user_id'] or die("ERROR: " . mysqli_error($db->mysqli));;
             $query = "insert into tasks (`task_name`,`owner_id`,`tag`,`description`,`done`,`color`) values('$taskname','$userid','$tasktag','$taskdesc',0,'$color')";
+            // echo $query."</br>";
             // echo $query;
             $result = $db->mysqli->query($query) or die("ERROR: Could Insert" . mysqli_error($db->mysqli));//password_verify($_POST['password'], $Password);
             /* Check if form's username and password matches */
             if( $result) {
                 /* Success: Set session variables and redirect to protected page */
-                header("location:index.php");
-                exit;
+                // header("location:index.php");
+                //echo "<script>window.location='index.php'</script>";
+                header('Location: index.php');
+                // exit;
             } else {
                 ?>
                 <!-- Show an error alert -->
@@ -69,7 +74,10 @@
 </div>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
 <script type="text/javascript" src="assets/javascripts/script.js"></script>
+<script type="text/javascript" src="assets/javascripts/jscolor.js"></script>
 <script type="text/javascript">
-    document.getElementById("color").value = randomColor({luminosity: 'light'});
+    var color_box = document.getElementById("color")
+    color_box.value = randomColor({luminosity: 'light'});
+    color_box.style.color = color_box.value;
 </script>
 <?php include "include/footer.php"; ?>

@@ -303,6 +303,7 @@ outline: none !important;
   min-height: 54px;
   margin-bottom: 10px;
   font-family:'Varela',sans-serif;
+  word-wrap: break-word;
 }
 
 .card__header{

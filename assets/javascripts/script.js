@@ -51,6 +51,7 @@ let cards = document.getElementsByClassName("card");
 Array.from(cards).forEach(e => {
     // e.style.background = randomColor({luminosity: 'light'});
     e.style.borderColor = e.style.background;
+    // e.style.color = e.style.background;
 });
 
 
