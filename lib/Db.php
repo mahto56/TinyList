@@ -61,6 +61,20 @@ class Db{
         }
     }
     
+    
+    public function searchTasks($query)
+    {   $username = $_SESSION['username'];
+        $query = "SELECT t.*,date(t.added_on) as date FROM tasks t,users u WHERE t.owner_id=u.user_id AND u.username='$username' AND t.task_name LIKE '%$query%' OR t.tag LIKE '%$query%' OR t.description LIKE '%$query%'";// OR WHERE '$query' LIKE CONCAT(t.tag,'%') OR WHERE '$query' LIKE CONCAT(t.description,'%')";
+        $data = $this->mysqli->query($query) or die("ERROR: Could not get movie details" . mysqli_error($this->mysqli));
+        if($data->num_rows > 0){
+            return $data;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    
     public function getTaskCount($list_id)
     {   $query = "SELECT count(*) FROM tasks t WHERE tasklist_id='$list_id'";
         $data = $this->mysqli->query($query) or die("ERROR: Could not get movie details" . mysqli_error($this->mysqli));
@@ -95,6 +109,7 @@ class Db{
             die("ERROR: Could not able to execute $query. " . mysqli_error($this->mysqli));
         }   
     }
+    
     
     
 

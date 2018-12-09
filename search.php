@@ -5,23 +5,14 @@
 	  exit;
   }
   //create new DB object
-  $title="TinyLists";
-  $header="Welcome, ".$_SESSION['firstname']." ! ";
+  $title="Search | TinyLists";
+  $header = "Search Results...";
   //$header="You have 4 uncompleted tasks!";
   include "include/header.php";
   $db = new Db();
-  $tasklists = $db->getTasks();
-  // $count = $db->getPendingTasksCount()->fetch_assoc();
-  
-  //delete
-  if(isset($_GET['delete'])) {
-    $db->deleteTask($_GET['delete']);
-  }
-  
-  if(isset($_GET['msg'])) {
-    echo "<script>alert('".$_GET['msg']."')</script>";
-    header('Location: index.php');
-  }
+//   echo $_POST['key'];
+  if(isset($_POST['key']))
+    $tasklists = $db->searchTasks($_POST['key']);
 ?>
 
 <style>
@@ -35,20 +26,6 @@
 <script src="assets/javascripts/hammer.min.js"></script>
 <script src="assets/javascripts/muuri.min.js"></script>
 
-<script type="text/javascript">
-  function getRandomColor() {
-                var letters = 'BCDEF'.split('');
-                var color = '#';
-                for (var i = 0; i < 6; i++ ) {
-                    color += letters[Math.floor(Math.random() * letters.length)];
-                }
-                return color;
-  }
-</script>
- <div class="form-ctrl__wrapper" >
-      <a href="add.php" id="add" class="form-ctrl form-submit round" >+</a>
-  </div>
-  
 <div id="container">
   <div class="main">
   <?php if($tasklists) :?>
@@ -78,7 +55,7 @@
       </div>
     <?php endwhile ?>
   <?php  else :?>
-    <h1 class="info">There are no Tasks :(</h1>
+    <h1 class="info">No Items found :(</h1>
   <?php endif; ?>
     
   </div>

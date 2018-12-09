@@ -6,11 +6,11 @@
   <head>
     <title><?=$title?></title>
     <link rel='stylesheet' href='assets/stylesheets/style.css' />
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet"/>
+    <!--<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">-->
+    <!--<link href="https://fonts.googleapis.com/css?family=Raleway:400,500,600" rel="stylesheet">-->
+    <!--<link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700" rel="stylesheet">-->
+    <link rel="stylesheet" href="assets/stylesheets/normalize.css"/>
+    <!--<link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet"/>-->
     <link rel="icon" type="image/x-icon" href="assets/images/mark.png"/>
     
     <script type="text/javascript">
@@ -36,12 +36,23 @@
            <div class="form-ctrl__wrapper">
            <input onclick="window.location='index.php'" type="button" value="Go Back" class="form-ctrl form-submit"/>
            </div>
+           
+        <?php elseif(strpos($_SERVER['SCRIPT_NAME'], 'edit.php') == true) :?>
+           <div class="form-ctrl__wrapper">
+           <input onclick="window.location='index.php'" type="button" value="Go Back" class="form-ctrl form-submit"/>
+           </div>
+          
+          <?php elseif(strpos($_SERVER['SCRIPT_NAME'], 'search.php') == true) :?>
+           <div class="form-ctrl__wrapper">
+           <input onclick="window.location='index.php'" type="button" value="Go Back" class="form-ctrl form-submit"/>
+           </div>
             
+              
           <?php elseif($_SESSION['active']==true) :?>
             <div class="form-ctrl__wrapper">
               <input onclick="toggle_search()" id="search-btn" type="button" value="Search" class="form-ctrl form-submit"/>
-              <form>
-                <input  id="search-bar" type="search" placeholder="Search" style="display:none;" class="form-ctrl icon fc" onblur="toggle_search()" required/>  
+              <form action="search.php" method="post">
+                <input name="key" id="search-bar" type="search" placeholder="Search" style="display:none;" class="form-ctrl icon fc" onblur="toggle_search()" required/>  
               </form>
               
             </div>
